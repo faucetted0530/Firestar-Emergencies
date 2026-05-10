@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign Up | Firestar Emergencies</title>
+
+  <title>Sign In | Firestar Emergencies</title>
+
   <link rel="stylesheet" href="css/auth.css" />
 </head>
 <body>
@@ -11,28 +13,43 @@
   <main class="auth-page">
     <section class="auth-visual">
       <div class="badge">FIRESTAR EMERGENCIES</div>
-      <h1>Emergency response starts here.</h1>
-      <p>Create your account to access the Firestar emergency management platform.</p>
+
+      <h1>Welcome back, responder.</h1>
+
+      <p>
+        Sign in to continue managing emergency operations and incident data.
+      </p>
     </section>
 
     <section class="auth-card">
-      <h2>Create Account</h2>
-      <p class="subtitle">Join Firestar Emergencies</p>
+      <h2>Sign In</h2>
 
-      <form id="signupForm">
-        <input type="text" id="fullName" placeholder="Full Name" required />
-        <input type="email" id="signupEmail" placeholder="Email Address" required />
-        <input type="password" id="signupPassword" placeholder="Password" required />
+      <p class="subtitle">Access your dashboard</p>
+
+      <form id="signinForm">
+        <input
+          type="email"
+          id="signinEmail"
+          placeholder="Email Address"
+          required
+        />
+
+        <input
+          type="password"
+          id="signinPassword"
+          placeholder="Password"
+          required
+        />
 
         <div class="form-message" id="formMessage"></div>
 
-        <button type="submit">Sign Up</button>
+        <button type="submit">Sign In</button>
       </form>
 
       <div class="auth-links">
         <p class="switch-text">
-          Already have an account?
-          <a href="signin.html">Sign In</a>
+          Don’t have an account?
+          <a href="signup.html">Create Account</a>
         </p>
 
         <p class="switch-text admin-link">
