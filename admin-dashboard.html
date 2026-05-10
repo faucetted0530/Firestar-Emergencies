@@ -1,0 +1,182 @@
+<!-- admin-dashboard.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Admin Dashboard | Firestar Emergencies</title>
+
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+  <div class="dashboard-layout">
+
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">🚨</div>
+
+        <div>
+          <h2>Firestar</h2>
+          <p>Admin Console</p>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#" class="active">Dashboard</a>
+        <a href="#">Incidents</a>
+        <a href="#">Units</a>
+        <a href="#">Reports</a>
+        <a href="#">Settings</a>
+      </nav>
+
+      <button id="logoutBtn" class="logout-btn">
+        Log Out
+      </button>
+    </aside>
+
+    <main class="main-content">
+
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Emergency Operations Center</p>
+          <h1>Admin Dashboard</h1>
+        </div>
+
+        <div class="admin-profile">
+          <span id="adminName">Admin</span>
+          <div class="avatar">A</div>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+
+        <div class="stat-card red">
+          <p>Active Incidents</p>
+          <h2>12</h2>
+          <span>Live emergency cases</span>
+        </div>
+
+        <div class="stat-card blue">
+          <p>Available Units</p>
+          <h2>28</h2>
+          <span>Ready for dispatch</span>
+        </div>
+
+        <div class="stat-card yellow">
+          <p>Pending Reports</p>
+          <h2>6</h2>
+          <span>Awaiting review</span>
+        </div>
+
+        <div class="stat-card green">
+          <p>Resolved Today</p>
+          <h2>19</h2>
+          <span>Completed responses</span>
+        </div>
+
+      </section>
+
+      <section class="dashboard-grid">
+
+        <div class="panel">
+          <div class="panel-header">
+            <h2>Recent Incidents</h2>
+            <button class="small-btn" type="button">View All</button>
+          </div>
+
+          <div class="incident-list">
+
+            <div class="incident-item">
+              <div>
+                <h3>Structure Fire</h3>
+                <p>Downtown District • High Priority</p>
+              </div>
+
+              <span class="status danger">Active</span>
+            </div>
+
+            <div class="incident-item">
+              <div>
+                <h3>Medical Emergency</h3>
+                <p>Northside Avenue • Medium Priority</p>
+              </div>
+
+              <span class="status warning">Pending</span>
+            </div>
+
+            <div class="incident-item">
+              <div>
+                <h3>Vehicle Collision</h3>
+                <p>Route 18 • High Priority</p>
+              </div>
+
+              <span class="status danger">Active</span>
+            </div>
+
+            <div class="incident-item">
+              <div>
+                <h3>Power Outage</h3>
+                <p>West Sector • Low Priority</p>
+              </div>
+
+              <span class="status stable">Resolved</span>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h2>Dispatch Control</h2>
+          </div>
+
+          <form class="dispatch-form" id="dispatchForm">
+            <input
+              type="text"
+              id="incidentTitle"
+              placeholder="Incident Title"
+              required
+            />
+
+            <input
+              type="text"
+              id="incidentLocation"
+              placeholder="Location"
+              required
+            />
+
+            <select id="incidentPriority" required>
+              <option value="">Priority Level</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Critical">Critical</option>
+            </select>
+
+            <textarea
+              id="incidentDetails"
+              placeholder="Incident Details"
+              required
+            ></textarea>
+
+            <button type="submit">
+              Create Incident
+            </button>
+          </form>
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/dashboard.js"></script>
+
+</body>
+</html>

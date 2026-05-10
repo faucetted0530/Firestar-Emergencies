@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Sign Up | Firestar Emergencies</title>
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+
+  <main class="auth-page">
+    <section class="auth-visual">
+      <div class="badge">FIRESTAR EMERGENCIES</div>
+      <h1>Admin access for emergency operations.</h1>
+      <p>Create an authorized admin account using your company-issued access key.</p>
+    </section>
+
+    <section class="auth-card">
+      <h2>Admin Sign Up</h2>
+      <p class="subtitle">Company key required</p>
+
+      <form id="adminSignupForm">
+        <input type="text" id="adminFullName" placeholder="Full Name" required />
+        <input type="email" id="adminEmail" placeholder="Email Address" required />
+        <input type="password" id="adminPassword" placeholder="Password" required />
+        <input type="text" id="companyKey" placeholder="Company Admin Key" required />
+
+        <div class="form-message" id="formMessage"></div>
+
+        <button type="submit">Create Admin Account</button>
+      </form>
+
+      <div class="auth-links">
+        <p class="switch-text">
+          Already have an account?
+          <a href="signin.html">Sign In</a>
+        </p>
+
+        <p class="switch-text admin-link">
+          Regular user?
+          <a href="signup.html">User Sign Up</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth.js"></script>
+
+</body>
+</html>
