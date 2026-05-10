@@ -59,7 +59,13 @@ if (signupForm) {
       return;
     }
 
-    window.location.href = "dashboard.html";
+    showMessage(
+      formMessage,
+      "Account created. Please check your email to confirm your account."
+    );
+
+    submitButton.disabled = false;
+    submitButton.textContent = "Sign Up";
   });
 }
 
@@ -119,7 +125,13 @@ if (adminSignupForm) {
       return;
     }
 
-    window.location.href = "admin-dashboard.html";
+    showMessage(
+      formMessage,
+      "Admin account created. Please check your email to confirm your account."
+    );
+
+    submitButton.disabled = false;
+    submitButton.textContent = "Create Admin Account";
   });
 }
 
@@ -149,6 +161,20 @@ if (signinForm) {
 
     if (error) {
       showMessage(formMessage, error.message);
+
+      submitButton.disabled = false;
+      submitButton.textContent = "Sign In";
+
+      return;
+    }
+
+    if (!data.user.email_confirmed_at) {
+      showMessage(
+        formMessage,
+        "Please verify your email before signing in."
+      );
+
+      await window.supabaseClient.auth.signOut();
 
       submitButton.disabled = false;
       submitButton.textContent = "Sign In";
