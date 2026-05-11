@@ -2,6 +2,10 @@
 
 console.log("dashboard.js loaded");
 
+const logoutBtn = document.getElementById("logoutBtn");
+const dispatchForm = document.getElementById("dispatchForm");
+const assignResponderForm = document.getElementById("assignResponderForm");
+
 async function protectAdminDashboard() {
   const {
     data: { user },
@@ -13,7 +17,7 @@ async function protectAdminDashboard() {
     return;
   }
 
-  const role = user.user_metadata?.role;
+  const role = user.user_metadata?.role?.toLowerCase();
 
   if (role !== "admin") {
     window.location.href = "dashboard.html";
@@ -29,16 +33,12 @@ async function protectAdminDashboard() {
   if (avatar) avatar.textContent = fullName.charAt(0).toUpperCase();
 }
 
-const logoutBtn = document.getElementById("logoutBtn");
-
 if (logoutBtn) {
   logoutBtn.addEventListener("click", async function () {
     await window.supabaseClient.auth.signOut();
     window.location.href = "signin.html";
   });
 }
-
-const dispatchForm = document.getElementById("dispatchForm");
 
 if (dispatchForm) {
   dispatchForm.addEventListener("submit", async function (e) {
@@ -101,15 +101,69 @@ Firestar Emergencies`;
     submitButton.disabled = false;
     submitButton.textContent = "Create Incident";
 
-    loadIncidents();
+    await loadIncidents();
 
     window.location.href =
       `mailto:${data.customer_email}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
   });
 }
 
+if (assignResponderForm) {
+  assignResponderForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const incidentId = document.getElementById("incidentSelect").value;
+    const responderType = document.getElementById("responderType").value;
+    const assignedUnit = document.getElementById("assignedUnit").value.trim();
+    const responderStatus = document.getElementById("responderStatus").value;
+
+    const submitButton = assignResponderForm.querySelector("button");
+    const dispatchMessage = document.getElementById("dispatchMessage");
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Assigning...";
+
+    const { error } = await window.supabaseClient
+      .from("incidents")
+      .update({
+        responder_type: responderType,
+        assigned_unit: assignedUnit,
+        responder_status: responderStatus
+      })
+      .eq("id", incidentId);
+
+    if (error) {
+      console.error(error);
+
+      if (dispatchMessage) {
+        dispatchMessage.textContent = "Unable to assign responders.";
+        dispatchMessage.classList.add("show");
+      }
+
+      submitButton.disabled = false;
+      submitButton.textContent = "Assign Responders";
+
+      return;
+    }
+
+    if (dispatchMessage) {
+      dispatchMessage.textContent = "Responders assigned successfully.";
+      dispatchMessage.classList.add("show");
+      dispatchMessage.style.color = "#4ade80";
+    }
+
+    assignResponderForm.reset();
+
+    submitButton.disabled = false;
+    submitButton.textContent = "Assign Responders";
+
+    await loadIncidents();
+  });
+}
+
 async function loadIncidents() {
   const incidentList = document.querySelector(".incident-list");
+  const incidentSelect = document.getElementById("incidentSelect");
   const activeIncidentCount = document.getElementById("activeIncidentCount");
   const highPriorityCount = document.getElementById("highPriorityCount");
 
@@ -145,6 +199,19 @@ async function loadIncidents() {
     highPriorityCount.textContent = highPriorityIncidents.length;
   }
 
+  if (incidentSelect) {
+    incidentSelect.innerHTML = `<option value="">Select Incident</option>`;
+
+    data.forEach((incident) => {
+      const option = document.createElement("option");
+
+      option.value = incident.id;
+      option.textContent = `${incident.tracking_id} — ${incident.title}`;
+
+      incidentSelect.appendChild(option);
+    });
+  }
+
   incidentList.innerHTML = "";
 
   if (data.length === 0) {
@@ -167,10 +234,13 @@ async function loadIncidents() {
         <p>${incident.location} • ${incident.priority} Priority</p>
         <p>Tracking ID: ${incident.tracking_id}</p>
         <p>Customer Email: ${incident.customer_email || "Not provided"}</p>
+        <p>Responder Type: ${incident.responder_type || "Not assigned"}</p>
+        <p>Assigned Unit: ${incident.assigned_unit || "Not assigned"}</p>
+        <p>Responder Status: ${incident.responder_status || "Pending Dispatch"}</p>
       </div>
 
       <span class="status danger">
-        ${incident.status}
+        ${incident.status || "Active"}
       </span>
     `;
 
