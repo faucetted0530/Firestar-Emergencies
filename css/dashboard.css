@@ -402,21 +402,34 @@ body::after {
   border: 1px solid rgba(255,255,255,0.08);
 }
 
-.incident-actions {
+.logo {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 34px;
 }
 
-.complete-btn {
-  background: rgba(77, 255, 166, 0.12);
-  color: #4dffa6;
+.firestar-logo {
+  width: 220px;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 25px rgba(255, 30, 60, 0.18));
 }
 
-.delete-btn {
-  background: rgba(255, 77, 90, 0.12);
-  color: #ff5967;
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(135deg, #ff2b4f, #7c0015);
+  box-shadow: 0 12px 30px rgba(255, 43, 79, 0.25);
+
+  color: white;
+  font-weight: 700;
 }
 
 }

@@ -13,37 +13,47 @@
   <div class="dashboard-container">
 
     <aside class="sidebar">
+
       <div class="logo">
-        <h2>FIRESTAR</h2>
-        <span>Operations Hub</span>
+        <img
+          src="assets/firestar-emergencies-logo.png"
+          alt="Firestar Emergencies Logo"
+          class="firestar-logo"
+        />
       </div>
 
-      <nav class="sidebar-nav">
-        <a href="admin-dashboard.html" class="active">Operations Hub</a>
-      </nav>
+      <button id="logoutBtn" class="logout-btn">
+        Logout
+      </button>
 
-      <button id="logoutBtn" class="logout-btn">Logout</button>
     </aside>
 
     <main class="main-content">
 
       <header class="topbar">
+
         <div>
           <h1>Operations Hub</h1>
           <p>Create, assign, update, complete, and delete incidents.</p>
         </div>
 
         <div class="admin-profile">
-          <div class="avatar">A</div>
+
+          <div class="avatar">
+            A
+          </div>
 
           <div>
             <h3 id="adminName">Admin</h3>
             <span>Administrator</span>
           </div>
+
         </div>
+
       </header>
 
       <section class="stats-grid">
+
         <div class="stat-card">
           <h2 id="activeIncidentCount">0</h2>
           <p>Active Incidents</p>
@@ -53,12 +63,20 @@
           <h2 id="highPriorityCount">0</h2>
           <p>High Priority Incidents</p>
         </div>
+
       </section>
 
       <section class="panel">
+
         <div class="panel-header">
           <h2 id="formTitle">Create Incident</h2>
-          <button type="button" class="small-btn" id="cancelEditBtn" style="display: none;">
+
+          <button
+            type="button"
+            class="small-btn"
+            id="cancelEditBtn"
+            style="display: none;"
+          >
             Cancel Edit
           </button>
         </div>
@@ -132,9 +150,11 @@
 
           <p class="form-message" id="incidentMessage"></p>
         </form>
+
       </section>
 
       <section class="panel">
+
         <div class="panel-header">
           <h2>Incidents</h2>
         </div>
@@ -142,6 +162,7 @@
         <div class="incident-list">
           <!-- Dynamic incidents load here -->
         </div>
+
       </section>
 
     </main>
