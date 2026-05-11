@@ -405,15 +405,21 @@ body::after {
 .logo {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 34px;
+  justify-content: flex-start;
+
+  padding-left: 6px;
+  margin-bottom: 28px;
 }
 
 .firestar-logo {
-  width: 220px;
-  max-width: 100%;
+  width: 92px;
+  height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 10px 25px rgba(255, 30, 60, 0.18));
+
+  filter:
+    drop-shadow(
+      0 6px 18px rgba(255, 30, 60, 0.16)
+    );
 }
 
 .avatar {
