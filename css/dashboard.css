@@ -402,4 +402,21 @@ body::after {
   border: 1px solid rgba(255,255,255,0.08);
 }
 
+.incident-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.complete-btn {
+  background: rgba(77, 255, 166, 0.12);
+  color: #4dffa6;
+}
+
+.delete-btn {
+  background: rgba(255, 77, 90, 0.12);
+  color: #ff5967;
+}
+
 }

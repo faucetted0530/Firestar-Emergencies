@@ -30,7 +30,7 @@
       <header class="topbar">
         <div>
           <h1>Operations Hub</h1>
-          <p>Create incidents, assign responders, and manage emergency activity.</p>
+          <p>Create, assign, update, complete, and delete incidents.</p>
         </div>
 
         <div class="admin-profile">
@@ -57,15 +57,35 @@
 
       <section class="panel">
         <div class="panel-header">
-          <h2>Create Incident</h2>
+          <h2 id="formTitle">Create Incident</h2>
+          <button type="button" class="small-btn" id="cancelEditBtn" style="display: none;">
+            Cancel Edit
+          </button>
         </div>
 
         <form class="dispatch-form" id="dispatchForm">
-          <input type="text" id="incidentTitle" placeholder="Incident Title" required />
+          <input type="hidden" id="editingIncidentId" />
 
-          <input type="text" id="incidentLocation" placeholder="Location" required />
+          <input
+            type="text"
+            id="incidentTitle"
+            placeholder="Incident Title"
+            required
+          />
 
-          <input type="email" id="customerEmail" placeholder="Customer Email" required />
+          <input
+            type="text"
+            id="incidentLocation"
+            placeholder="Location"
+            required
+          />
+
+          <input
+            type="email"
+            id="customerEmail"
+            placeholder="Customer Email"
+            required
+          />
 
           <select id="incidentPriority" required>
             <option value="">Priority Level</option>
@@ -73,22 +93,6 @@
             <option value="Medium">Medium</option>
             <option value="High">High</option>
             <option value="Critical">Critical</option>
-          </select>
-
-          <textarea id="incidentDetails" placeholder="Incident Details" required></textarea>
-
-          <button type="submit">Create Incident</button>
-        </form>
-      </section>
-
-      <section class="panel">
-        <div class="panel-header">
-          <h2>Assign Responders</h2>
-        </div>
-
-        <form class="dispatch-form" id="assignResponderForm">
-          <select id="incidentSelect" required>
-            <option value="">Select Incident</option>
           </select>
 
           <select id="responderType" required>
@@ -109,7 +113,6 @@
           />
 
           <select id="responderStatus" required>
-            <option value="">Responder Status</option>
             <option value="Pending Dispatch">Pending Dispatch</option>
             <option value="Dispatched">Dispatched</option>
             <option value="En Route">En Route</option>
@@ -117,19 +120,27 @@
             <option value="Resolved">Resolved</option>
           </select>
 
-          <button type="submit">Assign Responders</button>
+          <textarea
+            id="incidentDetails"
+            placeholder="Incident Details"
+            required
+          ></textarea>
 
-          <p class="form-message" id="dispatchMessage"></p>
+          <button type="submit" id="submitIncidentBtn">
+            Create Incident
+          </button>
+
+          <p class="form-message" id="incidentMessage"></p>
         </form>
       </section>
 
       <section class="panel">
         <div class="panel-header">
-          <h2>Active Incidents</h2>
+          <h2>Incidents</h2>
         </div>
 
         <div class="incident-list">
-          <!-- Incidents load here -->
+          <!-- Dynamic incidents load here -->
         </div>
       </section>
 
