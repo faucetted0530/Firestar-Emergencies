@@ -404,21 +404,35 @@ body::after {
 
 .logo {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 
-  padding-left: 6px;
-  margin-bottom: 28px;
+  margin-bottom: 18px;
+}
+
+.firestar-logo-wrap {
+  width: 120px;
+  height: 120px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .firestar-logo {
-  width: 92px;
+  width: 260px;
   height: auto;
+
+  margin-top: -18px;
+  margin-left: -58px;
+
   object-fit: contain;
 
   filter:
     drop-shadow(
-      0 6px 18px rgba(255, 30, 60, 0.16)
+      0 6px 18px rgba(255, 30, 60, 0.18)
     );
 }
 
@@ -431,8 +445,15 @@ body::after {
   align-items: center;
   justify-content: center;
 
-  background: linear-gradient(135deg, #ff2b4f, #7c0015);
-  box-shadow: 0 12px 30px rgba(255, 43, 79, 0.25);
+  background:
+    linear-gradient(
+      135deg,
+      #ff2b4f,
+      #7c0015
+    );
+
+  box-shadow:
+    0 12px 30px rgba(255, 43, 79, 0.25);
 
   color: white;
   font-weight: 700;
