@@ -2,12 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Customer Portal | Firestar Emergencies</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
-  <link rel="stylesheet" href="css/dashboard.css" />
+  <title>
+    Customer Portal | Firestar Emergencies
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="./css/dashboard.css?v=3"
+  />
 </head>
+
 <body>
 
   <main class="customer-portal">
@@ -15,11 +25,23 @@
     <section class="customer-card">
 
       <div class="portal-header">
-        <h1>Firestar Emergency Tracker</h1>
-        <p>Enter your incident tracking ID to view live updates.</p>
+
+        <h1>
+          Firestar Emergency Tracker
+        </h1>
+
+        <p>
+          Enter your incident tracking ID
+          to view live emergency updates.
+        </p>
+
       </div>
 
-      <form id="trackingForm" class="tracking-form">
+      <form
+        id="trackingForm"
+        class="tracking-form"
+      >
+
         <input
           type="text"
           id="trackingInput"
@@ -30,69 +52,118 @@
         <button type="submit">
           Track Incident
         </button>
+
       </form>
 
-      <p class="form-message" id="trackingMessage"></p>
+      <p
+        class="form-message"
+        id="trackingMessage"
+      ></p>
 
-      <section class="incident-tracker" id="incidentTracker" style="display: none;">
+      <section
+        class="incident-tracker"
+        id="incidentTracker"
+        style="display: none;"
+      >
 
         <div class="tracker-top">
+
           <div>
-            <p class="tracker-label">Tracking ID</p>
-            <h2 id="trackingIdDisplay">FS-000000</h2>
+
+            <p class="tracker-label">
+              Tracking ID
+            </p>
+
+            <h2 id="trackingIdDisplay">
+              FS-000000
+            </h2>
+
           </div>
 
-          <span class="status danger" id="incidentStatusDisplay">
+          <span
+            class="status danger"
+            id="incidentStatusDisplay"
+          >
             Active
           </span>
+
         </div>
 
         <div class="tracker-grid">
 
           <div class="tracker-item">
             <p>Incident</p>
-            <h3 id="incidentTitleDisplay">—</h3>
+
+            <h3 id="incidentTitleDisplay">
+              —
+            </h3>
           </div>
 
           <div class="tracker-item">
             <p>Location</p>
-            <h3 id="incidentLocationDisplay">—</h3>
+
+            <h3 id="incidentLocationDisplay">
+              —
+            </h3>
           </div>
 
           <div class="tracker-item">
             <p>Priority</p>
-            <h3 id="incidentPriorityDisplay">—</h3>
+
+            <h3 id="incidentPriorityDisplay">
+              —
+            </h3>
           </div>
 
           <div class="tracker-item">
             <p>Responder Type</p>
-            <h3 id="responderTypeDisplay">—</h3>
+
+            <h3 id="responderTypeDisplay">
+              —
+            </h3>
           </div>
 
           <div class="tracker-item">
             <p>Assigned Unit</p>
-            <h3 id="assignedUnitDisplay">—</h3>
+
+            <h3 id="assignedUnitDisplay">
+              —
+            </h3>
           </div>
 
           <div class="tracker-item">
             <p>Responder Status</p>
-            <h3 id="responderStatusDisplay">—</h3>
+
+            <h3 id="responderStatusDisplay">
+              —
+            </h3>
           </div>
 
         </div>
 
         <div class="tracker-details">
-          <p>Incident Details</p>
-          <h3 id="incidentDetailsDisplay">—</h3>
+
+          <p>
+            Incident Details
+          </p>
+
+          <h3 id="incidentDetailsDisplay">
+            —
+          </h3>
+
         </div>
 
         <p class="live-note">
-          Live updates are enabled. This page will update when dispatch changes your incident.
+          Live updates are enabled.
+          Dispatch changes will appear automatically.
         </p>
 
       </section>
 
-      <button id="logoutBtn" class="customer-logout">
+      <button
+        id="logoutBtn"
+        class="customer-logout"
+      >
         Log Out
       </button>
 
@@ -101,8 +172,10 @@
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase.js"></script>
-  <script src="js/user-dashboard.js"></script>
+
+  <script src="./js/supabase.js"></script>
+
+  <script src="./js/user-dashboard.js"></script>
 
 </body>
 </html>
