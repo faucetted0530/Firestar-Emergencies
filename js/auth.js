@@ -5,6 +5,7 @@ console.log("auth.js loaded");
 const signupForm = document.getElementById("signupForm");
 const signinForm = document.getElementById("signinForm");
 const adminSignupForm = document.getElementById("adminSignupForm");
+const successMessage = document.getElementById("successMessage");
 
 function showMessage(messageElement, text) {
   if (!messageElement) return;
@@ -18,6 +19,18 @@ function clearMessage(messageElement) {
 
   messageElement.textContent = "";
   messageElement.classList.remove("show");
+}
+
+// Detect email confirmation redirect
+const urlHash = window.location.hash;
+
+if (successMessage && urlHash.includes("access_token")) {
+  successMessage.textContent =
+    "Email confirmation successful. You may now sign in.";
+
+  successMessage.classList.add("show");
+
+  history.replaceState(null, null, window.location.pathname);
 }
 
 // Regular User Sign Up
@@ -85,7 +98,7 @@ if (adminSignupForm) {
     clearMessage(formMessage);
 
     submitButton.disabled = true;
-    submitButton.textContent = "Creating Admin...";
+    submitButton.textContent = "Checking Key...";
 
     const { data: keyData, error: keyError } = await window.supabaseClient
       .from("admin_keys")
@@ -94,8 +107,12 @@ if (adminSignupForm) {
       .eq("is_active", true)
       .single();
 
-    if (keyError || !keyData) {
-      showMessage(formMessage, "Invalid company admin key.");
+    if (
+      keyError ||
+      !keyData ||
+      keyData.used_count >= keyData.max_uses
+    ) {
+      showMessage(formMessage, "Invalid, inactive, or expired company key.");
 
       submitButton.disabled = false;
       submitButton.textContent = "Create Admin Account";
@@ -103,13 +120,17 @@ if (adminSignupForm) {
       return;
     }
 
+    submitButton.textContent = "Creating Admin...";
+
     const { data, error } = await window.supabaseClient.auth.signUp({
       email,
       password,
       options: {
         data: {
           full_name: fullName,
-          role: "admin"
+          role: "admin",
+          company_name: keyData.company_name,
+          company_key_id: keyData.id
         }
       }
     });
@@ -124,6 +145,13 @@ if (adminSignupForm) {
 
       return;
     }
+
+    await window.supabaseClient
+      .from("admin_keys")
+      .update({
+        used_count: keyData.used_count + 1
+      })
+      .eq("id", keyData.id);
 
     showMessage(
       formMessage,
