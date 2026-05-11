@@ -270,4 +270,55 @@ button:hover {
   opacity: 1;
   transform: translateY(0);
 }
+
+.auth-card select {
+  width: 100%;
+
+  padding: 15px 16px;
+
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+
+  background:
+    rgba(17, 24, 39, 0.92);
+
+  color: white;
+
+  font-size: 15px;
+
+  outline: none;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, #ff5967 50%),
+    linear-gradient(135deg, #ff5967 50%, transparent 50%);
+
+  background-position:
+    calc(100% - 20px) calc(50% - 3px),
+    calc(100% - 14px) calc(50% - 3px);
+
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+.auth-card select:focus {
+  border-color: #ff5967;
+
+  box-shadow:
+    0 0 0 4px rgba(255, 89, 103, 0.12);
+
+  transform: translateY(-1px);
+}
+
+.auth-card select option {
+  background: #111827;
+  color: white;
+}
 }
