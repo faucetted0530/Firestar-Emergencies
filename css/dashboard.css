@@ -49,7 +49,6 @@ body::after {
   background: rgba(10, 15, 25, 0.82);
   border-right: 1px solid rgba(255,255,255,0.08);
   backdrop-filter: blur(20px);
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -57,20 +56,13 @@ body::after {
 
 .logout-btn {
   margin-top: auto;
-
   padding: 14px;
-
   border: none;
   border-radius: 14px;
-
   background: rgba(230, 57, 70, 0.15);
-
   color: #ff5967;
-
   font-weight: bold;
-
   cursor: pointer;
-
   transition: 0.25s ease;
 }
 
@@ -113,20 +105,10 @@ body::after {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-
   display: grid;
   place-items: center;
-
-  background:
-    linear-gradient(
-      135deg,
-      #ff2b4f,
-      #7c0015
-    );
-
-  box-shadow:
-    0 12px 30px rgba(255, 43, 79, 0.25);
-
+  background: linear-gradient(135deg, #ff2b4f, #7c0015);
+  box-shadow: 0 12px 30px rgba(255, 43, 79, 0.25);
   color: white;
   font-weight: bold;
 }
@@ -225,7 +207,6 @@ body::after {
   border-radius: 18px;
   background: rgba(255,255,255,0.045);
   border: 1px solid rgba(255,255,255,0.06);
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -281,14 +262,10 @@ body::after {
 .dispatch-form textarea {
   width: 100%;
   padding: 15px;
-
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 14px;
-
   background: rgba(17, 24, 39, 0.9);
-
   color: white;
-
   outline: none;
 }
 
@@ -305,22 +282,12 @@ body::after {
 
 .dispatch-form button {
   padding: 15px;
-
   border: none;
   border-radius: 14px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #e63946,
-      #ff5967
-    );
-
+  background: linear-gradient(135deg, #e63946, #ff5967);
   color: white;
   font-weight: bold;
-
   cursor: pointer;
-
   transition: 0.25s ease;
 }
 
@@ -347,68 +314,9 @@ body::after {
   color: #ff5967;
 }
 
-@keyframes sirenPulse {
-  from {
-    opacity: 0.25;
-    transform: scale(0.95);
-  }
+/* Customer Portal */
 
-  to {
-    opacity: 0.7;
-    transform: scale(1.15);
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(22px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 1050px) {
-  .dashboard-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .sidebar {
-    position: static;
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 650px) {
-  .main-content {
-    padding: 22px;
-  }
-
-  .topbar {
-    align-items: flex-start;
-    gap: 20px;
-    flex-direction: column;
-  }
-
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .topbar h1 {
-    font-size: 30px;
-  }
-
-  .customer-portal {
+.customer-portal {
   min-height: 100vh;
   padding: 40px 20px;
   display: flex;
@@ -567,6 +475,48 @@ body::after {
   box-shadow: none;
 }
 
+@keyframes sirenPulse {
+  from {
+    opacity: 0.25;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 0.7;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1050px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 760px) {
   .customer-card {
     padding: 26px;
@@ -589,4 +539,23 @@ body::after {
     flex-direction: column;
   }
 }
+
+@media (max-width: 650px) {
+  .main-content {
+    padding: 22px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    gap: 20px;
+    flex-direction: column;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar h1 {
+    font-size: 30px;
+  }
 }
