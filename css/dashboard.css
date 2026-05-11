@@ -45,69 +45,32 @@ body::after {
 }
 
 .sidebar {
-  padding: 28px;
+  padding: 24px;
   background: rgba(10, 15, 25, 0.82);
   border-right: 1px solid rgba(255,255,255,0.08);
   backdrop-filter: blur(20px);
+
   display: flex;
   flex-direction: column;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 42px;
-}
-
-.brand-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 16px;
-  display: grid;
-  place-items: center;
-  background: rgba(255,255,255,0.08);
-  font-size: 22px;
-}
-
-.brand h2 {
-  font-size: 22px;
-}
-
-.brand p {
-  color: #9ca7b8;
-  font-size: 13px;
-}
-
-.nav-links {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.nav-links a {
-  padding: 14px 16px;
-  border-radius: 14px;
-  color: #aab4c3;
-  text-decoration: none;
-  transition: 0.25s ease;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  color: white;
-  background: rgba(255,255,255,0.08);
+  justify-content: flex-start;
 }
 
 .logout-btn {
   margin-top: auto;
+
   padding: 14px;
+
   border: none;
   border-radius: 14px;
+
   background: rgba(230, 57, 70, 0.15);
+
   color: #ff5967;
+
   font-weight: bold;
+
   cursor: pointer;
+
   transition: 0.25s ease;
 }
 
@@ -147,12 +110,23 @@ body::after {
 }
 
 .avatar {
-  width: 44px;
-  height: 44px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
+
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, #e63946, #1f6bff);
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff2b4f,
+      #7c0015
+    );
+
+  box-shadow:
+    0 12px 30px rgba(255, 43, 79, 0.25);
+
   color: white;
   font-weight: bold;
 }
@@ -251,6 +225,7 @@ body::after {
   border-radius: 18px;
   background: rgba(255,255,255,0.045);
   border: 1px solid rgba(255,255,255,0.06);
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -264,6 +239,13 @@ body::after {
 .incident-item p {
   color: #8f9bad;
   font-size: 14px;
+}
+
+.incident-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
 }
 
 .status {
@@ -299,10 +281,14 @@ body::after {
 .dispatch-form textarea {
   width: 100%;
   padding: 15px;
+
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 14px;
+
   background: rgba(17, 24, 39, 0.9);
+
   color: white;
+
   outline: none;
 }
 
@@ -319,18 +305,46 @@ body::after {
 
 .dispatch-form button {
   padding: 15px;
+
   border: none;
   border-radius: 14px;
-  background: linear-gradient(135deg, #e63946, #ff5967);
+
+  background:
+    linear-gradient(
+      135deg,
+      #e63946,
+      #ff5967
+    );
+
   color: white;
   font-weight: bold;
+
   cursor: pointer;
+
   transition: 0.25s ease;
 }
 
 .dispatch-form button:hover {
   transform: translateY(-2px);
   box-shadow: 0 16px 34px rgba(230,57,70,0.3);
+}
+
+.empty-state {
+  color: #9ca7b8;
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.complete-btn {
+  background: rgba(77, 255, 166, 0.12);
+  color: #4dffa6;
+}
+
+.delete-btn {
+  background: rgba(255, 77, 90, 0.12);
+  color: #ff5967;
 }
 
 @keyframes sirenPulse {
@@ -393,70 +407,4 @@ body::after {
   .topbar h1 {
     font-size: 30px;
   }
-
-  .empty-state {
-  color: #9ca7b8;
-  padding: 18px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.logo {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-
-  margin-bottom: 18px;
-}
-
-.firestar-logo-wrap {
-  width: 120px;
-  height: 120px;
-
-  overflow: hidden;
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.firestar-logo {
-  width: 260px;
-  height: auto;
-
-  margin-top: -18px;
-  margin-left: -58px;
-
-  object-fit: contain;
-
-  filter:
-    drop-shadow(
-      0 6px 18px rgba(255, 30, 60, 0.18)
-    );
-}
-
-.avatar {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background:
-    linear-gradient(
-      135deg,
-      #ff2b4f,
-      #7c0015
-    );
-
-  box-shadow:
-    0 12px 30px rgba(255, 43, 79, 0.25);
-
-  color: white;
-  font-weight: 700;
-}
-
 }
