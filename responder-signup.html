@@ -2,64 +2,154 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Responder Sign Up | Firestar Emergencies</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
-  <link rel="stylesheet" href="css/auth.css" />
+  <title>
+    Responder Sign Up | Firestar Emergencies
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="./css/auth.css?v=5"
+  />
 </head>
+
 <body>
 
   <main class="auth-page">
+
     <section class="auth-visual">
-      <div class="badge">FIRESTAR EMERGENCIES</div>
-      <h1>Responder access for emergency calls.</h1>
-      <p>Create a responder account using your company-issued access key.</p>
+
+      <div class="badge">
+        FIRESTAR EMERGENCIES
+      </div>
+
+      <h1>
+        Responder access for emergency calls.
+      </h1>
+
+      <p>
+        Create a responder account using
+        your company-issued access key.
+      </p>
+
     </section>
 
     <section class="auth-card">
-      <h2>Responder Sign Up</h2>
-      <p class="subtitle">Company key required</p>
+
+      <h2>
+        Responder Sign Up
+      </h2>
+
+      <p class="subtitle">
+        Company key required
+      </p>
 
       <form id="responderSignupForm">
-        <input type="text" id="responderFullName" placeholder="Full Name" required />
-        <input type="email" id="responderEmail" placeholder="Email Address" required />
-        <input type="password" id="responderPassword" placeholder="Password" required />
 
-        <select id="responderTypeSignup" required>
-          <option value="">Select Responder Type</option>
-          <option value="Firefighters">Firefighters</option>
-          <option value="Police">Police</option>
-          <option value="EMS">EMS</option>
-          <option value="SWAT">SWAT</option>
-          <option value="Rescue Team">Rescue Team</option>
-          <option value="Hazmat">Hazmat</option>
+        <input
+          type="text"
+          id="responderFullName"
+          placeholder="Full Name"
+          required
+        />
+
+        <input
+          type="email"
+          id="responderEmail"
+          placeholder="Email Address"
+          required
+        />
+
+        <input
+          type="password"
+          id="responderPassword"
+          placeholder="Password"
+          required
+        />
+
+        <select
+          id="responderTypeSignup"
+          required
+        >
+          <option value="">
+            Select Responder Type
+          </option>
+
+          <option value="Firefighters">
+            Firefighters
+          </option>
+
+          <option value="Police">
+            Police
+          </option>
+
+          <option value="EMS">
+            EMS
+          </option>
+
+          <option value="SWAT">
+            SWAT
+          </option>
+
+          <option value="Rescue Team">
+            Rescue Team
+          </option>
+
+          <option value="Hazmat">
+            Hazmat
+          </option>
         </select>
 
-        <input type="text" id="responderCompanyKey" placeholder="Company Responder Key" required />
+        <input
+          type="text"
+          id="responderCompanyKey"
+          placeholder="Company Responder Key"
+          required
+        />
 
-        <div class="form-message" id="formMessage"></div>
+        <div
+          class="form-message"
+          id="formMessage"
+        ></div>
 
-        <button type="submit">Create Responder Account</button>
+        <button type="submit">
+          Create Responder Account
+        </button>
+
       </form>
 
       <div class="auth-links">
+
         <p class="switch-text">
           Already have an account?
-          <a href="signin.html">Sign In</a>
+          <a href="signin.html">
+            Sign In
+          </a>
         </p>
 
         <p class="switch-text">
           Regular user?
-          <a href="signup.html">User Sign Up</a>
+          <a href="signup.html">
+            User Sign Up
+          </a>
         </p>
+
       </div>
+
     </section>
+
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase.js"></script>
-  <script src="js/auth.js"></script>
+
+  <script src="./js/supabase.js"></script>
+
+  <script src="./js/auth.js"></script>
 
 </body>
 </html>
