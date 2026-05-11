@@ -3,61 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Operations Hub | Firestar Emergencies</title>
-
   <link rel="stylesheet" href="css/dashboard.css" />
 </head>
+
 <body>
+  <div class="operations-page">
 
-  <div class="dashboard-container">
+    <header class="operations-header">
+      <div class="brand-block">
+        <div class="firestar-logo">
+          <div class="logo-flame">✦</div>
+        </div>
 
-    <aside class="sidebar">
-      <div class="logo">
-        <h2>FIRESTAR</h2>
-        <span>Operations Hub</span>
+        <div>
+          <h1>FIRE<span>STAR</span></h1>
+          <p>EMERGENCIES</p>
+        </div>
       </div>
 
-      <nav class="sidebar-nav">
-        <a href="admin-dashboard.html" class="active">Operations Hub</a>
-      </nav>
+      <div class="admin-profile">
+        <div class="avatar">A</div>
 
-      <button id="logoutBtn" class="logout-btn">Logout</button>
-    </aside>
-
-    <main class="main-content">
-
-      <header class="topbar">
         <div>
-          <h1>Operations Hub</h1>
-          <p>Create, assign, update, complete, and delete incidents.</p>
+          <h3 id="adminName">Admin</h3>
+          <span>Administrator</span>
         </div>
+      </div>
+    </header>
 
-        <div class="admin-profile">
-          <div class="avatar">A</div>
+    <main class="operations-main">
 
-          <div>
-            <h3 id="adminName">Admin</h3>
-            <span>Administrator</span>
-          </div>
-        </div>
-      </header>
+      <section class="hero-section">
+        <h2>Operations Hub</h2>
+        <p>Create, assign, update, complete, and delete incidents.</p>
+      </section>
 
       <section class="stats-grid">
         <div class="stat-card">
-          <h2 id="activeIncidentCount">0</h2>
-          <p>Active Incidents</p>
+          <div>
+            <h2 id="activeIncidentCount">0</h2>
+            <p>Active Incidents</p>
+          </div>
+
+          <div class="stat-icon">⌁</div>
         </div>
 
         <div class="stat-card">
-          <h2 id="highPriorityCount">0</h2>
-          <p>High Priority Incidents</p>
+          <div>
+            <h2 id="highPriorityCount">0</h2>
+            <p>High Priority Incidents</p>
+          </div>
+
+          <div class="stat-icon">!</div>
         </div>
       </section>
 
       <section class="panel">
         <div class="panel-header">
           <h2 id="formTitle">Create Incident</h2>
+
           <button type="button" class="small-btn" id="cancelEditBtn" style="display: none;">
             Cancel Edit
           </button>
@@ -66,51 +71,53 @@
         <form class="dispatch-form" id="dispatchForm">
           <input type="hidden" id="editingIncidentId" />
 
-          <input
-            type="text"
-            id="incidentTitle"
-            placeholder="Incident Title"
-            required
-          />
+          <div class="form-grid">
+            <input
+              type="text"
+              id="incidentTitle"
+              placeholder="Incident Title"
+              required
+            />
 
-          <input
-            type="text"
-            id="incidentLocation"
-            placeholder="Location"
-            required
-          />
+            <input
+              type="text"
+              id="incidentLocation"
+              placeholder="Location"
+              required
+            />
 
-          <input
-            type="email"
-            id="customerEmail"
-            placeholder="Customer Email"
-            required
-          />
+            <input
+              type="email"
+              id="customerEmail"
+              placeholder="Customer Email"
+              required
+            />
 
-          <select id="incidentPriority" required>
-            <option value="">Priority Level</option>
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-            <option value="Critical">Critical</option>
-          </select>
+            <select id="incidentPriority" required>
+              <option value="">Priority Level</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Critical">Critical</option>
+            </select>
 
-          <select id="responderType" required>
-            <option value="">Responder Type</option>
-            <option value="Firefighters">Firefighters</option>
-            <option value="Police">Police</option>
-            <option value="EMS">EMS</option>
-            <option value="SWAT">SWAT</option>
-            <option value="Rescue Team">Rescue Team</option>
-            <option value="Hazmat">Hazmat</option>
-          </select>
+            <select id="responderType" required>
+              <option value="">Responder Type</option>
+              <option value="Firefighters">Firefighters</option>
+              <option value="Police">Police</option>
+              <option value="EMS">EMS</option>
+              <option value="SWAT">SWAT</option>
+              <option value="Rescue Team">Rescue Team</option>
+              <option value="Hazmat">Hazmat</option>
+            </select>
 
-          <input
-            type="text"
-            id="assignedUnit"
-            placeholder="Assigned Unit Example: Engine 12, Medic 4, Patrol 8"
-            required
-          />
+            <input
+              type="text"
+              id="assignedUnit"
+              placeholder="Assigned Unit Example: Engine 12, Medic 4, Patrol 8"
+              required
+            />
+          </div>
 
           <select id="responderStatus" required>
             <option value="Pending Dispatch">Pending Dispatch</option>
@@ -144,13 +151,15 @@
         </div>
       </section>
 
-    </main>
+      <button id="logoutBtn" class="floating-logout">
+        Logout
+      </button>
 
+    </main>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/supabase.js"></script>
   <script src="js/dashboard.js"></script>
-
 </body>
 </html>
