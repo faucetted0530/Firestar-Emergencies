@@ -19,6 +19,8 @@ async function protectAdminDashboard() {
 
   const role = user.user_metadata?.role?.toLowerCase();
 
+  console.log("Logged in role:", role);
+
   if (role !== "admin") {
     window.location.href = "dashboard.html";
     return;
@@ -70,7 +72,7 @@ if (dispatchForm) {
       .single();
 
     if (error) {
-      console.error(error);
+      console.error("Create incident error:", error);
 
       submitButton.disabled = false;
       submitButton.textContent = "Create Incident";
@@ -133,11 +135,12 @@ if (assignResponderForm) {
       .eq("id", incidentId);
 
     if (error) {
-      console.error(error);
+      console.error("Assign responder error:", error);
 
       if (dispatchMessage) {
         dispatchMessage.textContent = "Unable to assign responders.";
         dispatchMessage.classList.add("show");
+        dispatchMessage.style.color = "#ff5b6e";
       }
 
       submitButton.disabled = false;
@@ -167,7 +170,7 @@ async function loadIncidents() {
   const activeIncidentCount = document.getElementById("activeIncidentCount");
   const highPriorityCount = document.getElementById("highPriorityCount");
 
-  if (!incidentList) return;
+  console.log("incidentSelect found:", incidentSelect);
 
   const { data, error } = await window.supabaseClient
     .from("incidents")
@@ -176,27 +179,11 @@ async function loadIncidents() {
       ascending: false
     });
 
+  console.log("Loaded incidents:", data, error);
+
   if (error) {
-    console.error(error);
+    console.error("Incident load error:", error);
     return;
-  }
-
-  const activeIncidents = data.filter(
-    (incident) => incident.status === "Active"
-  );
-
-  const highPriorityIncidents = data.filter(
-    (incident) =>
-      incident.priority === "High" ||
-      incident.priority === "Critical"
-  );
-
-  if (activeIncidentCount) {
-    activeIncidentCount.textContent = activeIncidents.length;
-  }
-
-  if (highPriorityCount) {
-    highPriorityCount.textContent = highPriorityIncidents.length;
   }
 
   if (incidentSelect) {
@@ -206,19 +193,33 @@ async function loadIncidents() {
       const option = document.createElement("option");
 
       option.value = incident.id;
-      option.textContent = `${incident.tracking_id} — ${incident.title}`;
+      option.textContent = `${incident.tracking_id || "No ID"} — ${incident.title}`;
 
       incidentSelect.appendChild(option);
     });
   }
 
+  if (activeIncidentCount) {
+    activeIncidentCount.textContent = data.filter(
+      (incident) => incident.status === "Active"
+    ).length;
+  }
+
+  if (highPriorityCount) {
+    highPriorityCount.textContent = data.filter(
+      (incident) =>
+        incident.priority === "High" ||
+        incident.priority === "Critical"
+    ).length;
+  }
+
+  if (!incidentList) return;
+
   incidentList.innerHTML = "";
 
   if (data.length === 0) {
     incidentList.innerHTML = `
-      <p class="empty-state">
-        No incidents have been created yet.
-      </p>
+      <p class="empty-state">No incidents have been created yet.</p>
     `;
     return;
   }
@@ -232,7 +233,7 @@ async function loadIncidents() {
       <div>
         <h3>${incident.title}</h3>
         <p>${incident.location} • ${incident.priority} Priority</p>
-        <p>Tracking ID: ${incident.tracking_id}</p>
+        <p>Tracking ID: ${incident.tracking_id || "Missing"}</p>
         <p>Customer Email: ${incident.customer_email || "Not provided"}</p>
         <p>Responder Type: ${incident.responder_type || "Not assigned"}</p>
         <p>Assigned Unit: ${incident.assigned_unit || "Not assigned"}</p>
