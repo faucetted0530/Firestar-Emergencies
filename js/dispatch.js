@@ -34,7 +34,7 @@ async function protectDispatchDashboard() {
 
   const role = user.user_metadata?.role;
 
-  if (role !== "admin" && role !== "dispatcher") {
+  if (role !== "dispatcher") {
     window.location.href = "dashboard.html";
     return;
   }

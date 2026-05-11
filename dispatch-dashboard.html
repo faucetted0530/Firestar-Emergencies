@@ -13,24 +13,26 @@
   <div class="dashboard-container">
 
     <aside class="sidebar">
+
       <div class="logo">
         <h2>FIRESTAR</h2>
         <span>Dispatch Center</span>
       </div>
 
       <nav class="sidebar-nav">
-        <a href="admin-dashboard.html">Admin</a>
-        <a href="dispatch-dashboard.html" class="active">Dispatch</a>
-        <a href="#">Incidents</a>
-        <a href="#">Responders</a>
+        <a href="dispatch-dashboard.html" class="active">Dispatch Dashboard</a>
       </nav>
 
-      <button id="logoutBtn" class="logout-btn">Logout</button>
+      <button id="logoutBtn" class="logout-btn">
+        Logout
+      </button>
+
     </aside>
 
     <main class="main-content">
 
       <header class="topbar">
+
         <div>
           <h1>Dispatch Dashboard</h1>
           <p>Assign responders to active incidents</p>
@@ -38,14 +40,17 @@
 
         <div class="admin-profile">
           <div class="avatar">D</div>
+
           <div>
             <h3 id="dispatcherName">Dispatcher</h3>
             <span>Operations</span>
           </div>
         </div>
+
       </header>
 
       <section class="panel">
+
         <div class="panel-header">
           <h2>Assign Responders</h2>
         </div>
@@ -82,14 +87,18 @@
             <option value="Resolved">Resolved</option>
           </select>
 
-          <button type="submit">Assign Responders</button>
+          <button type="submit">
+            Assign Responders
+          </button>
 
           <p class="form-message" id="dispatchMessage"></p>
 
         </form>
+
       </section>
 
       <section class="panel">
+
         <div class="panel-header">
           <h2>Current Incidents</h2>
         </div>
@@ -97,6 +106,7 @@
         <div class="incident-list" id="dispatchIncidentList">
           <!-- Incidents load here -->
         </div>
+
       </section>
 
     </main>

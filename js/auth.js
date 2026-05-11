@@ -19,7 +19,6 @@ function clearMessage(messageElement) {
   messageElement.classList.remove("show");
 }
 
-// Detect email confirmation redirect
 const urlHash = window.location.hash;
 
 if (successMessage && urlHash.includes("access_token")) {
@@ -58,8 +57,6 @@ if (signupForm) {
         }
       }
     });
-
-    console.log("Signup response:", data, error);
 
     if (error) {
       showMessage(formMessage, error.message);
@@ -122,14 +119,12 @@ if (adminSignupForm) {
       options: {
         data: {
           full_name: fullName,
-          role: "admin",
+          role: keyData.role || "admin",
           company_name: keyData.company_name,
           company_key_id: keyData.id
         }
       }
     });
-
-    console.log("Admin signup response:", data, error);
 
     if (error) {
       showMessage(formMessage, error.message);
@@ -147,7 +142,7 @@ if (adminSignupForm) {
 
     showMessage(
       formMessage,
-      "Admin account created. Please check your email to confirm your account."
+      "Account created. Please check your email to confirm your account."
     );
 
     submitButton.disabled = false;
@@ -176,8 +171,6 @@ if (signinForm) {
         email,
         password
       });
-
-    console.log("Signin response:", data, error);
 
     if (error) {
       showMessage(formMessage, error.message);
