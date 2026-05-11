@@ -411,138 +411,134 @@ body::after {
   .customer-portal {
   min-height: 100vh;
   padding: 40px 20px;
-
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .customer-card {
-  width: min(900px, 100%);
-  padding: 34px;
-
-  background: rgba(13, 19, 31, 0.82);
-  border: 1px solid rgba(255,255,255,0.09);
-  border-radius: 24px;
-
-  backdrop-filter: blur(22px);
-
-  box-shadow:
-    0 24px 70px rgba(0,0,0,0.35);
+  width: min(920px, 100%);
+  padding: 40px;
+  background: rgba(13, 19, 31, 0.78);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 28px;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 30px 90px rgba(0,0,0,0.42);
+  animation: slideUp 0.7s ease forwards;
 }
 
 .portal-header {
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .portal-header h1 {
-  font-size: 36px;
+  font-size: 42px;
   margin-bottom: 10px;
+  letter-spacing: -1px;
 }
 
 .portal-header p {
   color: #9ca7b8;
+  font-size: 17px;
 }
 
 .tracking-form {
   display: flex;
   gap: 14px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .tracking-form input {
   flex: 1;
-
-  padding: 16px;
-
+  padding: 17px 18px;
   border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 14px;
-
+  border-radius: 16px;
   background: rgba(17, 24, 39, 0.9);
-
   color: white;
-
+  font-size: 15px;
   outline: none;
+  transition: 0.25s ease;
 }
 
 .tracking-form input:focus {
   border-color: #ff5967;
+  box-shadow: 0 0 0 4px rgba(255, 89, 103, 0.12);
+  transform: translateY(-2px);
 }
 
 .tracking-form button,
 .customer-logout {
-  padding: 15px 20px;
-
+  padding: 17px 22px;
   border: none;
-  border-radius: 14px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #e63946,
-      #ff5967
-    );
-
+  border-radius: 16px;
+  background: linear-gradient(135deg, #e63946, #ff5967);
   color: white;
-
-  font-weight: bold;
-
+  font-weight: 800;
   cursor: pointer;
-
   transition: 0.25s ease;
+  box-shadow: 0 14px 34px rgba(230,57,70,0.26);
 }
 
 .tracking-form button:hover,
 .customer-logout:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 34px rgba(230,57,70,0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 44px rgba(230,57,70,0.38);
+}
+
+.tracking-form button:active,
+.customer-logout:active {
+  transform: translateY(0);
 }
 
 .incident-tracker {
-  margin-top: 24px;
-  padding: 24px;
-
-  border-radius: 20px;
-
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  margin-top: 26px;
+  padding: 26px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(255,255,255,0.09);
+  animation: slideUp 0.45s ease forwards;
 }
 
 .tracker-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  gap: 20px;
-
+  gap: 22px;
   margin-bottom: 24px;
 }
 
 .tracker-label {
   color: #9ca7b8;
   margin-bottom: 6px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
 }
 
 .tracker-top h2 {
-  font-size: 30px;
+  font-size: 32px;
 }
 
 .tracker-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-
+  gap: 15px;
   margin-bottom: 18px;
 }
 
 .tracker-item,
 .tracker-details {
-  padding: 16px;
-
-  border-radius: 16px;
-
-  background: rgba(13, 19, 31, 0.78);
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(13, 19, 31, 0.82);
   border: 1px solid rgba(255,255,255,0.07);
+  transition: 0.25s ease;
+}
+
+.tracker-item:hover,
+.tracker-details:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 89, 103, 0.22);
 }
 
 .tracker-item p,
@@ -555,11 +551,11 @@ body::after {
 .tracker-item h3,
 .tracker-details h3 {
   font-size: 16px;
+  line-height: 1.4;
 }
 
 .live-note {
   margin-top: 18px;
-
   color: #4ade80;
   font-size: 14px;
 }
@@ -568,9 +564,18 @@ body::after {
   margin-top: 24px;
   background: rgba(230, 57, 70, 0.15);
   color: #ff5967;
+  box-shadow: none;
 }
 
 @media (max-width: 760px) {
+  .customer-card {
+    padding: 26px;
+  }
+
+  .portal-header h1 {
+    font-size: 32px;
+  }
+
   .tracking-form {
     flex-direction: column;
   }
