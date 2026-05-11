@@ -9,14 +9,12 @@ const successMessage = document.getElementById("successMessage");
 
 function showMessage(messageElement, text) {
   if (!messageElement) return;
-
   messageElement.textContent = text;
   messageElement.classList.add("show");
 }
 
 function clearMessage(messageElement) {
   if (!messageElement) return;
-
   messageElement.textContent = "";
   messageElement.classList.remove("show");
 }
@@ -65,10 +63,8 @@ if (signupForm) {
 
     if (error) {
       showMessage(formMessage, error.message);
-
       submitButton.disabled = false;
       submitButton.textContent = "Sign Up";
-
       return;
     }
 
@@ -113,10 +109,8 @@ if (adminSignupForm) {
       keyData.used_count >= keyData.max_uses
     ) {
       showMessage(formMessage, "Invalid, inactive, or expired company key.");
-
       submitButton.disabled = false;
       submitButton.textContent = "Create Admin Account";
-
       return;
     }
 
@@ -139,10 +133,8 @@ if (adminSignupForm) {
 
     if (error) {
       showMessage(formMessage, error.message);
-
       submitButton.disabled = false;
       submitButton.textContent = "Create Admin Account";
-
       return;
     }
 
@@ -189,18 +181,13 @@ if (signinForm) {
 
     if (error) {
       showMessage(formMessage, error.message);
-
       submitButton.disabled = false;
       submitButton.textContent = "Sign In";
-
       return;
     }
 
     if (!data.user.email_confirmed_at) {
-      showMessage(
-        formMessage,
-        "Please verify your email before signing in."
-      );
+      showMessage(formMessage, "Please verify your email before signing in.");
 
       await window.supabaseClient.auth.signOut();
 
@@ -214,6 +201,8 @@ if (signinForm) {
 
     if (role === "admin") {
       window.location.href = "admin-dashboard.html";
+    } else if (role === "dispatcher") {
+      window.location.href = "dispatch-dashboard.html";
     } else {
       window.location.href = "dashboard.html";
     }
