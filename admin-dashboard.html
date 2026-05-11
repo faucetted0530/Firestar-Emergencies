@@ -14,6 +14,7 @@
 
     <!-- Sidebar -->
     <aside class="sidebar">
+
       <div class="logo">
         <h2>FIRESTAR</h2>
         <span>Emergency Dispatch</span>
@@ -31,6 +32,7 @@
       <button id="logoutBtn" class="logout-btn">
         Logout
       </button>
+
     </aside>
 
     <!-- Main Content -->
@@ -38,48 +40,45 @@
 
       <!-- Top Bar -->
       <header class="topbar">
+
         <div>
           <h1>Admin Dashboard</h1>
           <p>Emergency operations overview</p>
         </div>
 
         <div class="admin-profile">
-          <div class="avatar">A</div>
+
+          <div class="avatar">
+            A
+          </div>
 
           <div>
             <h3 id="adminName">Admin</h3>
             <span>Dispatcher</span>
           </div>
+
         </div>
+
       </header>
 
       <!-- Stats -->
       <section class="stats-grid">
 
         <div class="stat-card">
-          <h2>24</h2>
+          <h2 id="activeIncidentCount">0</h2>
           <p>Active Incidents</p>
         </div>
 
         <div class="stat-card">
-          <h2>12</h2>
-          <p>Units Dispatched</p>
-        </div>
-
-        <div class="stat-card">
-          <h2>7</h2>
-          <p>High Priority</p>
-        </div>
-
-        <div class="stat-card">
-          <h2>98%</h2>
-          <p>System Status</p>
+          <h2 id="highPriorityCount">0</h2>
+          <p>High Priority Incidents</p>
         </div>
 
       </section>
 
-      <!-- Incident Form -->
+      <!-- Incident Creation -->
       <section class="panel">
+
         <div class="panel-header">
           <h2>Create Incident</h2>
         </div>
@@ -126,10 +125,12 @@
           </button>
 
         </form>
+
       </section>
 
-      <!-- Active Incidents -->
+      <!-- Incident Feed -->
       <section class="panel">
+
         <div class="panel-header">
           <h2>Active Incidents</h2>
         </div>
@@ -139,6 +140,7 @@
           <!-- Dynamic incidents load here -->
 
         </div>
+
       </section>
 
     </main>

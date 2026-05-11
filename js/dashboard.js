@@ -82,16 +82,16 @@ if (dispatchForm) {
       `${window.location.origin}/dashboard.html?tracking=${data.tracking_id}`;
 
     const emailSubject =
-      `Firestar Emergencies Tracking ID: ${data.tracking_id}`;
+      `Firestar Emergencies Incident Tracking ID: ${data.tracking_id}`;
 
     const emailBody =
       `Hello,
 
 Your emergency incident has been created.
 
-Tracking ID: ${data.tracking_id}
+Incident Tracking ID: ${data.tracking_id}
 
-You can track your emergency here:
+You can track your emergency status here:
 ${trackingLink}
 
 Firestar Emergencies`;
@@ -110,6 +110,8 @@ Firestar Emergencies`;
 
 async function loadIncidents() {
   const incidentList = document.querySelector(".incident-list");
+  const activeIncidentCount = document.getElementById("activeIncidentCount");
+  const highPriorityCount = document.getElementById("highPriorityCount");
 
   if (!incidentList) return;
 
@@ -125,7 +127,34 @@ async function loadIncidents() {
     return;
   }
 
+  const activeIncidents = data.filter(
+    (incident) => incident.status === "Active"
+  );
+
+  const highPriorityIncidents = data.filter(
+    (incident) =>
+      incident.priority === "High" ||
+      incident.priority === "Critical"
+  );
+
+  if (activeIncidentCount) {
+    activeIncidentCount.textContent = activeIncidents.length;
+  }
+
+  if (highPriorityCount) {
+    highPriorityCount.textContent = highPriorityIncidents.length;
+  }
+
   incidentList.innerHTML = "";
+
+  if (data.length === 0) {
+    incidentList.innerHTML = `
+      <p class="empty-state">
+        No incidents have been created yet.
+      </p>
+    `;
+    return;
+  }
 
   data.forEach((incident) => {
     const incidentCard = document.createElement("div");
@@ -137,6 +166,7 @@ async function loadIncidents() {
         <h3>${incident.title}</h3>
         <p>${incident.location} • ${incident.priority} Priority</p>
         <p>Tracking ID: ${incident.tracking_id}</p>
+        <p>Customer Email: ${incident.customer_email || "Not provided"}</p>
       </div>
 
       <span class="status danger">
