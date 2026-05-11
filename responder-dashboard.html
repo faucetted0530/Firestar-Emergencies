@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Responder Dashboard | Firestar Emergencies</title>
+
+  <link rel="stylesheet" href="./css/dashboard.css?v=4" />
+</head>
+<body>
+
+  <main class="customer-portal">
+
+    <section class="customer-card">
+
+      <div class="portal-header">
+        <h1>Responder Dispatch Board</h1>
+        <p>View matching incidents and accept or decline response requests.</p>
+      </div>
+
+      <div class="tracker-top">
+        <div>
+          <p class="tracker-label">Responder Type</p>
+          <h2 id="responderTypeDisplay">Responder</h2>
+        </div>
+
+        <button id="logoutBtn" class="customer-logout">
+          Log Out
+        </button>
+      </div>
+
+      <p class="form-message" id="responderMessage"></p>
+
+      <section class="incident-tracker">
+        <div class="tracker-top">
+          <div>
+            <p class="tracker-label">Available Incidents</p>
+            <h2>Live Requests</h2>
+          </div>
+
+          <span class="status danger" id="requestCount">0 Requests</span>
+        </div>
+
+        <div class="incident-list" id="responderIncidentList">
+          <!-- Matching incidents load here -->
+        </div>
+      </section>
+
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./js/supabase.js"></script>
+  <script src="./js/responder-dashboard.js"></script>
+
+</body>
+</html>

@@ -5,6 +5,7 @@ console.log("auth.js loaded");
 const signupForm = document.getElementById("signupForm");
 const signinForm = document.getElementById("signinForm");
 const adminSignupForm = document.getElementById("adminSignupForm");
+const responderSignupForm = document.getElementById("responderSignupForm");
 const successMessage = document.getElementById("successMessage");
 
 function showMessage(messageElement, text) {
@@ -19,7 +20,6 @@ function clearMessage(messageElement) {
   messageElement.classList.remove("show");
 }
 
-// Detect email confirmation redirect
 const urlHash = window.location.hash;
 
 if (successMessage && urlHash.includes("access_token")) {
@@ -48,7 +48,7 @@ if (signupForm) {
     submitButton.disabled = true;
     submitButton.textContent = "Creating Account...";
 
-    const { data, error } = await window.supabaseClient.auth.signUp({
+    const { error } = await window.supabaseClient.auth.signUp({
       email,
       password,
       options: {
@@ -58,8 +58,6 @@ if (signupForm) {
         }
       }
     });
-
-    console.log("Signup response:", data, error);
 
     if (error) {
       showMessage(formMessage, error.message);
@@ -78,7 +76,7 @@ if (signupForm) {
   });
 }
 
-// Admin / Dispatcher Sign Up
+// Admin Sign Up
 if (adminSignupForm) {
   adminSignupForm.addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -103,8 +101,6 @@ if (adminSignupForm) {
       .eq("is_active", true)
       .single();
 
-    console.log("Company key response:", keyData, keyError);
-
     if (
       keyError ||
       !keyData ||
@@ -116,27 +112,20 @@ if (adminSignupForm) {
       return;
     }
 
-    const accountRole = (keyData.role || "admin").toLowerCase();
+    submitButton.textContent = "Creating Admin...";
 
-    submitButton.textContent =
-      accountRole === "dispatcher"
-        ? "Creating Dispatcher..."
-        : "Creating Admin...";
-
-    const { data, error } = await window.supabaseClient.auth.signUp({
+    const { error } = await window.supabaseClient.auth.signUp({
       email,
       password,
       options: {
         data: {
           full_name: fullName,
-          role: accountRole,
+          role: "admin",
           company_name: keyData.company_name,
           company_key_id: keyData.id
         }
       }
     });
-
-    console.log("Company account signup response:", data, error);
 
     if (error) {
       showMessage(formMessage, error.message);
@@ -154,11 +143,89 @@ if (adminSignupForm) {
 
     showMessage(
       formMessage,
-      "Account created. Please check your email to confirm your account."
+      "Admin account created. Please check your email to confirm your account."
     );
 
     submitButton.disabled = false;
     submitButton.textContent = "Create Admin Account";
+  });
+}
+
+// Responder Sign Up
+if (responderSignupForm) {
+  responderSignupForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const fullName = document.getElementById("responderFullName").value.trim();
+    const email = document.getElementById("responderEmail").value.trim();
+    const password = document.getElementById("responderPassword").value;
+    const responderType = document.getElementById("responderTypeSignup").value;
+    const companyKey = document.getElementById("responderCompanyKey").value.trim();
+
+    const submitButton = responderSignupForm.querySelector("button");
+    const formMessage = document.getElementById("formMessage");
+
+    clearMessage(formMessage);
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Checking Key...";
+
+    const { data: keyData, error: keyError } = await window.supabaseClient
+      .from("admin_keys")
+      .select("*")
+      .eq("key", companyKey)
+      .eq("is_active", true)
+      .eq("role", "responder")
+      .single();
+
+    if (
+      keyError ||
+      !keyData ||
+      Number(keyData.used_count) >= Number(keyData.max_uses)
+    ) {
+      showMessage(formMessage, "Invalid, inactive, or expired responder key.");
+      submitButton.disabled = false;
+      submitButton.textContent = "Create Responder Account";
+      return;
+    }
+
+    submitButton.textContent = "Creating Responder...";
+
+    const { error } = await window.supabaseClient.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: fullName,
+          role: "responder",
+          responder_type: responderType,
+          company_name: keyData.company_name,
+          company_key_id: keyData.id
+        }
+      }
+    });
+
+    if (error) {
+      showMessage(formMessage, error.message);
+      submitButton.disabled = false;
+      submitButton.textContent = "Create Responder Account";
+      return;
+    }
+
+    await window.supabaseClient
+      .from("admin_keys")
+      .update({
+        used_count: Number(keyData.used_count) + 1
+      })
+      .eq("id", keyData.id);
+
+    showMessage(
+      formMessage,
+      "Responder account created. Please check your email to confirm your account."
+    );
+
+    submitButton.disabled = false;
+    submitButton.textContent = "Create Responder Account";
   });
 }
 
@@ -178,13 +245,11 @@ if (signinForm) {
     submitButton.disabled = true;
     submitButton.textContent = "Signing In...";
 
-    const { data, error } =
+    const { error } =
       await window.supabaseClient.auth.signInWithPassword({
         email,
         password
       });
-
-    console.log("Signin response:", data, error);
 
     if (error) {
       showMessage(formMessage, error.message);
@@ -194,20 +259,8 @@ if (signinForm) {
     }
 
     const {
-      data: { user },
-      error: userError
+      data: { user }
     } = await window.supabaseClient.auth.getUser();
-
-    if (userError || !user) {
-      showMessage(formMessage, "Unable to verify account. Please try again.");
-      submitButton.disabled = false;
-      submitButton.textContent = "Sign In";
-      return;
-    }
-
-    console.log("SIGNED IN USER:", user);
-    console.log("USER METADATA:", user.user_metadata);
-    console.log("USER ROLE:", user.user_metadata?.role);
 
     if (!user.email_confirmed_at) {
       showMessage(formMessage, "Please verify your email before signing in.");
@@ -222,13 +275,13 @@ if (signinForm) {
 
     const role = user.user_metadata?.role?.toLowerCase();
 
-    if (role === "dispatcher") {
-      window.location.href = "dispatch-dashboard.html";
+    if (role === "admin") {
+      window.location.href = "admin-dashboard.html";
       return;
     }
 
-    if (role === "admin") {
-      window.location.href = "admin-dashboard.html";
+    if (role === "responder") {
+      window.location.href = "responder-dashboard.html";
       return;
     }
 
